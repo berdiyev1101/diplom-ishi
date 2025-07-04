@@ -18,8 +18,21 @@ class Index(ListView):
         context["offers"] = Offer.objects.all()
         context["vendors"] = Vendor.objects.all()
         context["products"] = Product.objects.all()
+        context["featured_products"] = Product.objects.all()[:4]
+        context["best_products"] = Product.objects.all()[4:7]
+        context["blogs"] = LatestBlog.objects.all()
         return context
 
+class ProductByCategory(ListView):
+    model = Product
+    context_object_name = "products"
+    template_name = "shop/category.html"
+    paginate_by = 2
+
+    def get_queryset(self):
+        category = Category.objects.get(pk=self.kwargs['pk'])
+        products = Product.objects.filter(category=category)
+        return products
 
 
 def signup(request):

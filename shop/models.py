@@ -77,6 +77,14 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
+    def get_first_name(self):
+        if self.images:
+            try:
+                return self.images.first().image.url
+            except:
+                return "https://avatars.mds.yandex.net/i?id=cb7631da68336d1560b26115134c1765f341e9f7-5248434-images-thumbs&n=13"
+        return "https://avatars.mds.yandex.net/i?id=cb7631da68336d1560b26115134c1765f341e9f7-5248434-images-thumbs&n=13"
+
     def __str__(self):
         return self.title
 
@@ -90,5 +98,13 @@ class Gallery(models.Model):
 
     def __str__(self):
         return self.product.title
+
+class LatestBlog(models.Model):
+    title = models.CharField(max_length=50)
+    description = models.TextField(max_length=500)
+    image = models.ImageField(upload_to="images")
+
+    def __str__(self):
+        return self.title
 
 

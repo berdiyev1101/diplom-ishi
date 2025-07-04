@@ -22,7 +22,7 @@
                             <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Categories</a>
                             <ul class="dropdown-menu">
                                 {% for category in categories %}
-								<li><a href="shop.html">{{category.title}}</a></li>
+								<li><a href="{% url 'category' category.pk %}">{{category.title}}</a></li>
                                 {% endfor %}
                             </ul>
                         </li>
