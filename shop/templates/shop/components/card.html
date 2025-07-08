@@ -1,3 +1,4 @@
+{% load shop_tags %}
 <div class="col-lg-3 col-md-6 special-grid best-seller">
                     <div class="products-single fix">
                         <div class="box-img-hover">
@@ -7,9 +8,22 @@
                             <img style="height: 250px;" src="{{ product.get_first_name }}" class="img-fluid fixed-image" alt="{{ product.title }}">
                             <div class="mask-icon">
                                 <ul>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                    <li><a href="{% url 'detail' product.pk %}" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                    {% if request.user.is_authenticated %}
+                                    {% get_likes request.user as likes %}
+                                    <li>
+                                        <a href="{% url 'like' product.pk  %}" data-toggle="tooltip" data-placement="right" title="Add to Wishlist">
+                                            {% if product in likes %}
+                                            <i class="fas fa-heart text-danger"></i>
+                                            {% else %}
+                                            <i class="far fa-heart"></i>
+                                            {% endif %}
+                                        </a>
+                                    </li>
+                                    {% else %}
+                                    <li><a href="{% url 'signin'  %}" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                    {% endif %}
                                 </ul>
                                 <a class="cart" href="#">Add to Cart</a>
                             </div>

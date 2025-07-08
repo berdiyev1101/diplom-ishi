@@ -20,4 +20,7 @@ admin.site.register(SubCategory)
 admin.site.register(Offer)
 admin.site.register(Vendor)
 admin.site.register(LatestBlog)
+admin.site.register(Contact)
+admin.site.register(Like)
+admin.site.register(Basket)
 

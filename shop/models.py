@@ -56,10 +56,8 @@ class SubCategory(models.Model):
         verbose_name = "SubCategory"
         verbose_name_plural = "SubCategories"
 
-
 class Offer(models.Model):
     image = models.ImageField(upload_to="images/")
-
 
 class Vendor(models.Model):
     image = models.ImageField(upload_to="images/")
@@ -69,6 +67,10 @@ class Vendor(models.Model):
         return self.title
 
 class Product(models.Model):
+    AREA_CHOICES = [
+        ("yer","yer"),
+        ("daraxt","daraxt")
+    ]
     title = models.CharField(max_length=50)
     price = models.DecimalField(max_digits=10, decimal_places=3)
     sale = models.DecimalField(max_digits=10, decimal_places=3, blank=True, null=True)
@@ -76,6 +78,7 @@ class Product(models.Model):
     quantity = models.IntegerField(default=10)
     created_at = models.DateTimeField(auto_now_add=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    area = models.CharField(max_length=50,default=False, choices=AREA_CHOICES)
 
     def get_first_name(self):
         if self.images:
@@ -106,5 +109,40 @@ class LatestBlog(models.Model):
 
     def __str__(self):
         return self.title
+
+class Contact(models.Model):
+    name = models.CharField(max_length=30)
+    email = models.EmailField()
+    subject = models.CharField(max_length=200)
+    message = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+class Like(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.user.email} - {self.product.title}"
+
+class  Basket(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+    added_at = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        unique_together = ("user","product")
+
+    def __str__(self):
+        return self.user.email
+
+    def get_total_sale(self):
+        if self.product.sale:
+            return self.product.sale * self.quantity
+        return self.product.price * self.quantity
+
+    def get_total_price(self):
+        return self.product.price * self.quantity
 
 
