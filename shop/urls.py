@@ -22,3 +22,5 @@ urlpatterns = [
     path("location/", Location.as_view(), name="location"),
     path("my-account/", MyAccount.as_view(), name="account"),
 ]
+
+
