@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block title %}
+Category Products
+{% endblock title %}
+{% block main %}
+{% include 'shop/components/title.html' %}
+<div class="my-account-box-main">
+        <div class="container">
+            <div class="my-account-page">
+                <div class="row">
+                    <div class="col-lg-4 col-md-12">
+                        <div class="account-box">
+                            <div class="service-box">
+                                <div class="service-icon">
+                                    <a href="{% url 'basket' %}"> <i class="fa fa-gift"></i> </a>
+                                </div>
+                                <div class="service-desc">
+                                    <h4>Your Orders</h4>
+                                    <p>Track, return, or buy things again</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="account-box">
+                            <div class="service-box">
+                                <div class="service-icon">
+                                    <a href="{% url 'likes' %}"><i class="fa fa-lock"></i> </a>
+                                </div>
+                                <div class="service-desc">
+                                    <h4>Liked Products</h4>
+                                    <p>Edit login, name, and mobile number</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="account-box">
+                            <div class="service-box">
+                                <div class="service-icon">
+                                    <a href="{% url 'location' %}"> <i class="fa fa-location-arrow"></i> </a>
+                                </div>
+                                <div class="service-desc">
+                                    <h4>Your Addresses</h4>
+                                    <p>Edit addresses for orders and gifts</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-box">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-12">
+                            <div class="account-box">
+                                <div class="service-box">
+                                    <div class="service-desc">
+                                        <h4>Contact Us</h4>
+                                        <ul>
+                                            <li> <a href="https://t.me/muhriddin_1101">Telegram</a> </li>
+                                            <li> <a href="https://www.instagram.com/_muhridd1n_1101?igsh=ejZ2OTUydzJsNGU5">Instagram</a> </li>
+                                            <li><a href=""> Phone NUmber:</a> +998971588844</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12">
+                            <div class="account-box">
+                                <div class="service-box">
+                                    <div class="service-desc">
+                                        <h4>Comments</h4>
+                                        <ul>
+                                            {% for comment in comments %}
+                                            <li> <a href="#">{{comment.title}} </a> </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12">
+                            <div class="account-box">
+                                <div class="service-box">
+                                    <div class="service-desc">
+                                        <h4>About Us</h4>
+                                        <p>Freshshop onlayn do‘koniga xush kelibsiz – sizning ishonchli, qulay va sifatli xarid sherigingiz! Freshshop – bu har bir oila uchun yangi, sog‘lom va hamyonbop mahsulotlarni uydan chiqmagan holda xarid qilish imkoniyatidir. Siz sabzavot, mevalar, oziq-ovqat yoki kundalik ehtiyojlar uchun nima qidirmang, biz sizga tez va ishonchli xizmat ko‘rsatishga tayyormiz. Nega aynan Freshshop?🥬 Yangi mahsulotlar kafolati: Mahsulotlarimiz bevosita ishonchli yetkazib beruvchilardan olinadi.🚚 Tez yetkazib berish: Buyurtmangiz qisqa vaqt ichida manzilingizga yetkaziladi. 💳 To‘lovda qulaylik: Onlayn yoki yetkazilganda to‘lang – tanlov sizniki.
+
+☎️ Doimiy qo‘llab-quvvatlash: Savollaringizga tezkor javob beramiz.
+
+Freshshop – xarid qilishni oson, qulay va zamonaviy qiladigan xizmat!
+
+Bizni tanlaganingiz uchun rahmat!
+
+</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock main %}

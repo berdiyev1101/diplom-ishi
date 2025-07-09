@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}
+Category Products
+{% endblock title %}
+{% block main %}
+{% include 'shop/components/title.html' %}
+<h2>Our Location</h2>
+<p>{{ address }}</p>
+<iframe
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d47962.424913406395!2d69.2400739!3d41.3110818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38aef4c313c5c4f1%3A0xb3c79c29e74d95b6!2sTashkent!5e0!3m2!1sen!2s!4v1611582422584!5m2!1sen!2s"
+  width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy">
+</iframe>
+{% endblock main %}

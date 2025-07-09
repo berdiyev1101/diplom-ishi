@@ -23,4 +23,5 @@ admin.site.register(LatestBlog)
 admin.site.register(Contact)
 admin.site.register(Like)
 admin.site.register(Basket)
+admin.site.register(Comment)
 

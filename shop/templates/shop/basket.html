@@ -42,12 +42,19 @@
                                         <p>$ {{product.product.price}}</p>
                                     </td>
                                     {% endif %}
-                                    <td class="quantity-box"><input type="number" size="4" value="{{product.quantity}}" min="0" step="1" class="c-input-text qty text"></td>
+                                    <form action="{% url 'basket_update' product.pk %}" method="post">
+                                        {% csrf_token %}
+                                        <td class="quantity-box">
+                                            <input name="quantity" type="number" value="{{ product.quantity }}" min="0"
+                                            class="qty-input" onchange="this.form.submit()">
+                                        </td>
+                                    </form>
+
                                     <td class="total-pr">
                                         <p>$ {{product.get_total_sale}}</p>
                                     </td>
                                     <td class="remove-pr">
-                                        <a href="#">
+                                        <a href="{% url 'basket_remove' product.pk %}">
 									<i class="fas fa-times"></i>
 								</a>
                                     </td>
@@ -62,17 +69,6 @@
             <div class="row my-5">
                 <div class="col-lg-6 col-sm-6">
                     <div class="coupon-box">
-                        <div class="input-group input-group-sm">
-                            <input class="form-control" placeholder="Enter your coupon code" aria-label="Coupon code" type="text">
-                            <div class="input-group-append">
-                                <button class="btn btn-theme" type="button">Apply Coupon</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-sm-6">
-                    <div class="update-box">
-                        <input value="Update Cart" type="submit">
                     </div>
                 </div>
             </div>
@@ -83,30 +79,21 @@
                     <div class="order-box">
                         <h3>Order summary</h3>
                         <div class="d-flex">
-                            <h4>Sub Total</h4>
-                            <div class="ml-auto font-weight-bold"> $ 130 </div>
+                            <h4>Total Price</h4>
+                            <div class="ml-auto font-weight-bold"> $ {{total_price}} </div>
                         </div>
                         <div class="d-flex">
-                            <h4>Discount</h4>
-                            <div class="ml-auto font-weight-bold"> $ 40 </div>
-                        </div>
-                        <hr class="my-1">
-                        <div class="d-flex">
-                            <h4>Coupon Discount</h4>
-                            <div class="ml-auto font-weight-bold"> $ 10 </div>
+                            <h4>Sale</h4>
+                            <div class="ml-auto font-weight-bold"> $ {{sale}} </div>
                         </div>
                         <div class="d-flex">
-                            <h4>Tax</h4>
-                            <div class="ml-auto font-weight-bold"> $ 2 </div>
-                        </div>
-                        <div class="d-flex">
-                            <h4>Shipping Cost</h4>
+                            <h4>Delivery</h4>
                             <div class="ml-auto font-weight-bold"> Free </div>
                         </div>
                         <hr>
                         <div class="d-flex gr-total">
-                            <h5>Grand Total</h5>
-                            <div class="ml-auto h5"> $ 388 </div>
+                            <h5>Payment</h5>
+                            <div class="ml-auto h5"> $ {{total_sale}} </div>
                         </div>
                         <hr> </div>
                 </div>

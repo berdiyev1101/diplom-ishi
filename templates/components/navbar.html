@@ -39,7 +39,7 @@
                 <!-- Start Atribute Navigation -->
                 <div class="attr-nav">
                     <ul>
-                        <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
+                        <li class="search"><a href="{% url 'search' %}"><i class="fa fa-search"></i></a></li>
                         <li class="side-menu">
 
 							<a href="#">
@@ -61,7 +61,7 @@
                             {% else %}
                             <a href="{% url 'signin' %}" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
                             {% endif %}
-                            <span class="float-right"><strong>Total</strong>: $180.00</span>
+                            <span class="float-right"><strong>Total</strong>: ${{total_sale}}</span>
                 </li>
             </div>
             <!-- End Side Menu -->

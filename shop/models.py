@@ -146,3 +146,15 @@ class  Basket(models.Model):
         return self.product.price * self.quantity
 
 
+
+class Comment(models.Model):
+    title = models.TextField()
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+
+

@@ -1,7 +1,8 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import *
+from django import forms
 
-from shop.models import CustomUser
+from shop.models import CustomUser, Comment
 
 
 class SignUpForm(UserCreationForm):
@@ -49,3 +50,14 @@ class SignInForm(Form):
     class Meta:
         model = CustomUser
         fields = ["email","password"]
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ("title",)
+        widgets = {
+            "title":forms.Textarea(attrs={
+                "title":"dorm-control",
+                "rows":3
+            })
+        }
